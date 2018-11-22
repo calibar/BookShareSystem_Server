@@ -1,0 +1,992 @@
+swagger: "2.0"
+info:
+  title: beego Test API
+  description: beego has a very cool tools to autogenerate documents for your API
+  version: 1.0.0
+  termsOfService: http://beego.me/
+  contact:
+    email: astaxie@gmail.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+basePath: /v1
+paths:
+  /apply/:
+    get:
+      tags:
+      - apply
+      description: get ApplicantList
+      operationId: ApplicantListController.Get All
+      parameters:
+      - in: query
+        name: query
+        description: Filter. e.g. col1:v1,col2:v2 ...
+        type: string
+      - in: query
+        name: fields
+        description: Fields returned. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: sortby
+        description: Sorted-by fields. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: order
+        description: Order corresponding to each sortby field, if single value, apply
+          to all sortby fields. e.g. desc,asc ...
+        type: string
+      - in: query
+        name: limit
+        description: Limit the size of result set. Must be an integer
+        type: string
+      - in: query
+        name: offset
+        description: Start position of result set. Must be an integer
+        type: string
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.ApplicantList'
+        "403":
+          description: ""
+    post:
+      tags:
+      - apply
+      description: create ApplicantList
+      operationId: ApplicantListController.Post
+      parameters:
+      - in: body
+        name: body
+        description: body for ApplicantList content
+        required: true
+        schema:
+          $ref: '#/definitions/models.ApplicantList'
+      responses:
+        "201":
+          description: '{int} models.ApplicantList'
+        "403":
+          description: body is empty
+  /apply/{id}:
+    get:
+      tags:
+      - apply
+      description: get ApplicantList by id
+      operationId: ApplicantListController.Get One
+      parameters:
+      - in: path
+        name: id
+        description: The key for staticblock
+        required: true
+        type: string
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.ApplicantList'
+        "403":
+          description: :id is empty
+    put:
+      tags:
+      - apply
+      description: update the ApplicantList
+      operationId: ApplicantListController.Put
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to update
+        required: true
+        type: string
+      - in: body
+        name: body
+        description: body for ApplicantList content
+        required: true
+        schema:
+          $ref: '#/definitions/models.ApplicantList'
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.ApplicantList'
+        "403":
+          description: :id is not int
+    delete:
+      tags:
+      - apply
+      description: delete the ApplicantList
+      operationId: ApplicantListController.Delete
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to delete
+        required: true
+        type: string
+      responses:
+        "200":
+          description: '{string} delete success!'
+        "403":
+          description: id is empty
+  /book_transaction/:
+    get:
+      tags:
+      - book_transaction
+      description: get BookTransaction
+      operationId: BookTransactionController.Get All
+      parameters:
+      - in: query
+        name: query
+        description: Filter. e.g. col1:v1,col2:v2 ...
+        type: string
+      - in: query
+        name: fields
+        description: Fields returned. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: sortby
+        description: Sorted-by fields. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: order
+        description: Order corresponding to each sortby field, if single value, apply
+          to all sortby fields. e.g. desc,asc ...
+        type: string
+      - in: query
+        name: limit
+        description: Limit the size of result set. Must be an integer
+        type: string
+      - in: query
+        name: offset
+        description: Start position of result set. Must be an integer
+        type: string
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.BookTransaction'
+        "403":
+          description: ""
+    post:
+      tags:
+      - book_transaction
+      description: create BookTransaction
+      operationId: BookTransactionController.Post
+      parameters:
+      - in: body
+        name: body
+        description: body for BookTransaction content
+        required: true
+        schema:
+          $ref: '#/definitions/models.BookTransaction'
+      responses:
+        "201":
+          description: '{int} models.BookTransaction'
+        "403":
+          description: body is empty
+  /book_transaction/{id}:
+    get:
+      tags:
+      - book_transaction
+      description: get BookTransaction by id
+      operationId: BookTransactionController.Get One
+      parameters:
+      - in: path
+        name: id
+        description: The key for staticblock
+        required: true
+        type: string
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.BookTransaction'
+        "403":
+          description: :id is empty
+    put:
+      tags:
+      - book_transaction
+      description: update the BookTransaction
+      operationId: BookTransactionController.Put
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to update
+        required: true
+        type: string
+      - in: body
+        name: body
+        description: body for BookTransaction content
+        required: true
+        schema:
+          $ref: '#/definitions/models.BookTransaction'
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.BookTransaction'
+        "403":
+          description: :id is not int
+    delete:
+      tags:
+      - book_transaction
+      description: delete the BookTransaction
+      operationId: BookTransactionController.Delete
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to delete
+        required: true
+        type: string
+      responses:
+        "200":
+          description: '{string} delete success!'
+        "403":
+          description: id is empty
+  /bug_report/:
+    get:
+      tags:
+      - bug_report
+      description: get BugReport
+      operationId: BugReportController.Get All
+      parameters:
+      - in: query
+        name: query
+        description: Filter. e.g. col1:v1,col2:v2 ...
+        type: string
+      - in: query
+        name: fields
+        description: Fields returned. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: sortby
+        description: Sorted-by fields. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: order
+        description: Order corresponding to each sortby field, if single value, apply
+          to all sortby fields. e.g. desc,asc ...
+        type: string
+      - in: query
+        name: limit
+        description: Limit the size of result set. Must be an integer
+        type: string
+      - in: query
+        name: offset
+        description: Start position of result set. Must be an integer
+        type: string
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.BugReport'
+        "403":
+          description: ""
+    post:
+      tags:
+      - bug_report
+      description: create BugReport
+      operationId: BugReportController.Post
+      parameters:
+      - in: body
+        name: body
+        description: body for BugReport content
+        required: true
+        schema:
+          $ref: '#/definitions/models.BugReport'
+      responses:
+        "201":
+          description: '{int} models.BugReport'
+        "403":
+          description: body is empty
+  /bug_report/{id}:
+    get:
+      tags:
+      - bug_report
+      description: get BugReport by id
+      operationId: BugReportController.Get One
+      parameters:
+      - in: path
+        name: id
+        description: The key for staticblock
+        required: true
+        type: string
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.BugReport'
+        "403":
+          description: :id is empty
+    put:
+      tags:
+      - bug_report
+      description: update the BugReport
+      operationId: BugReportController.Put
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to update
+        required: true
+        type: string
+      - in: body
+        name: body
+        description: body for BugReport content
+        required: true
+        schema:
+          $ref: '#/definitions/models.BugReport'
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.BugReport'
+        "403":
+          description: :id is not int
+    delete:
+      tags:
+      - bug_report
+      description: delete the BugReport
+      operationId: BugReportController.Delete
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to delete
+        required: true
+        type: string
+      responses:
+        "200":
+          description: '{string} delete success!'
+        "403":
+          description: id is empty
+  /campus/:
+    get:
+      tags:
+      - campus
+      description: get Campus
+      operationId: CampusController.Get All
+      parameters:
+      - in: query
+        name: query
+        description: Filter. e.g. col1:v1,col2:v2 ...
+        type: string
+      - in: query
+        name: fields
+        description: Fields returned. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: sortby
+        description: Sorted-by fields. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: order
+        description: Order corresponding to each sortby field, if single value, apply
+          to all sortby fields. e.g. desc,asc ...
+        type: string
+      - in: query
+        name: limit
+        description: Limit the size of result set. Must be an integer
+        type: string
+      - in: query
+        name: offset
+        description: Start position of result set. Must be an integer
+        type: string
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.Campus'
+        "403":
+          description: ""
+    post:
+      tags:
+      - campus
+      description: create Campus
+      operationId: CampusController.Post
+      parameters:
+      - in: body
+        name: body
+        description: body for Campus content
+        required: true
+        schema:
+          $ref: '#/definitions/models.Campus'
+      responses:
+        "201":
+          description: '{int} models.Campus'
+        "403":
+          description: body is empty
+  /campus/{id}:
+    get:
+      tags:
+      - campus
+      description: get Campus by id
+      operationId: CampusController.Get One
+      parameters:
+      - in: path
+        name: id
+        description: The key for staticblock
+        required: true
+        type: string
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.Campus'
+        "403":
+          description: :id is empty
+    put:
+      tags:
+      - campus
+      description: update the Campus
+      operationId: CampusController.Put
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to update
+        required: true
+        type: string
+      - in: body
+        name: body
+        description: body for Campus content
+        required: true
+        schema:
+          $ref: '#/definitions/models.Campus'
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.Campus'
+        "403":
+          description: :id is not int
+    delete:
+      tags:
+      - campus
+      description: delete the Campus
+      operationId: CampusController.Delete
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to delete
+        required: true
+        type: string
+      responses:
+        "200":
+          description: '{string} delete success!'
+        "403":
+          description: id is empty
+  /login/:
+    get:
+      tags:
+      - login
+      description: get User
+      operationId: UserController.Get All
+      parameters:
+      - in: query
+        name: verify
+        description: Filter. e.g. username|password
+        type: string
+      - in: query
+        name: query
+        description: Filter. e.g. col1:v1,col2:v2 ...
+        type: string
+      - in: query
+        name: fields
+        description: Fields returned. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: sortby
+        description: Sorted-by fields. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: order
+        description: Order corresponding to each sortby field, if single value, apply
+          to all sortby fields. e.g. desc,asc ...
+        type: string
+      - in: query
+        name: limit
+        description: Limit the size of result set. Must be an integer
+        type: string
+      - in: query
+        name: offset
+        description: Start position of result set. Must be an integer
+        type: string
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.User'
+        "403":
+          description: ""
+    post:
+      tags:
+      - login
+      description: create User
+      operationId: UserController.Post
+      parameters:
+      - in: body
+        name: body
+        description: body for User content
+        required: true
+        schema:
+          $ref: '#/definitions/models.User'
+      responses:
+        "201":
+          description: '{int} models.User'
+        "403":
+          description: body is empty
+  /login/{id}:
+    get:
+      tags:
+      - login
+      description: get User by id
+      operationId: UserController.Get One
+      parameters:
+      - in: path
+        name: id
+        description: The key for staticblock
+        required: true
+        type: string
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.User'
+        "403":
+          description: :id is empty
+    put:
+      tags:
+      - login
+      description: update the User
+      operationId: UserController.Put
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to update
+        required: true
+        type: string
+      - in: body
+        name: body
+        description: body for User content
+        required: true
+        schema:
+          $ref: '#/definitions/models.User'
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.User'
+        "403":
+          description: :id is not int
+    delete:
+      tags:
+      - login
+      description: delete the User
+      operationId: UserController.Delete
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to delete
+        required: true
+        type: string
+      responses:
+        "200":
+          description: '{string} delete success!'
+        "403":
+          description: id is empty
+  /messger/:
+    get:
+      tags:
+      - messger
+      description: get UserMessage
+      operationId: UserMessageController.Get All
+      parameters:
+      - in: query
+        name: query
+        description: Filter. e.g. col1:v1,col2:v2 ...
+        type: string
+      - in: query
+        name: fields
+        description: Fields returned. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: sortby
+        description: Sorted-by fields. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: order
+        description: Order corresponding to each sortby field, if single value, apply
+          to all sortby fields. e.g. desc,asc ...
+        type: string
+      - in: query
+        name: limit
+        description: Limit the size of result set. Must be an integer
+        type: string
+      - in: query
+        name: offset
+        description: Start position of result set. Must be an integer
+        type: string
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.UserMessage'
+        "403":
+          description: ""
+    post:
+      tags:
+      - messger
+      description: create UserMessage
+      operationId: UserMessageController.Post
+      parameters:
+      - in: body
+        name: body
+        description: body for UserMessage content
+        required: true
+        schema:
+          $ref: '#/definitions/models.UserMessage'
+      responses:
+        "201":
+          description: '{int} models.UserMessage'
+        "403":
+          description: body is empty
+  /messger/{id}:
+    get:
+      tags:
+      - messger
+      description: get UserMessage by id
+      operationId: UserMessageController.Get One
+      parameters:
+      - in: path
+        name: id
+        description: The key for staticblock
+        required: true
+        type: string
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.UserMessage'
+        "403":
+          description: :id is empty
+    put:
+      tags:
+      - messger
+      description: update the UserMessage
+      operationId: UserMessageController.Put
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to update
+        required: true
+        type: string
+      - in: body
+        name: body
+        description: body for UserMessage content
+        required: true
+        schema:
+          $ref: '#/definitions/models.UserMessage'
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.UserMessage'
+        "403":
+          description: :id is not int
+    delete:
+      tags:
+      - messger
+      description: delete the UserMessage
+      operationId: UserMessageController.Delete
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to delete
+        required: true
+        type: string
+      responses:
+        "200":
+          description: '{string} delete success!'
+        "403":
+          description: id is empty
+  /user_profile/:
+    get:
+      tags:
+      - user_profile
+      description: get UserProfile
+      operationId: UserProfileController.Get All
+      parameters:
+      - in: query
+        name: query
+        description: Filter. e.g. col1:v1,col2:v2 ...
+        type: string
+      - in: query
+        name: fields
+        description: Fields returned. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: sortby
+        description: Sorted-by fields. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: order
+        description: Order corresponding to each sortby field, if single value, apply
+          to all sortby fields. e.g. desc,asc ...
+        type: string
+      - in: query
+        name: limit
+        description: Limit the size of result set. Must be an integer
+        type: string
+      - in: query
+        name: offset
+        description: Start position of result set. Must be an integer
+        type: string
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.UserProfile'
+        "403":
+          description: ""
+    post:
+      tags:
+      - user_profile
+      description: create UserProfile
+      operationId: UserProfileController.Post
+      parameters:
+      - in: body
+        name: body
+        description: body for UserProfile content
+        required: true
+        schema:
+          $ref: '#/definitions/models.UserProfile'
+      responses:
+        "201":
+          description: '{int} models.UserProfile'
+        "403":
+          description: body is empty
+  /user_profile/{id}:
+    get:
+      tags:
+      - user_profile
+      description: get UserProfile by id
+      operationId: UserProfileController.Get One
+      parameters:
+      - in: path
+        name: id
+        description: The key for staticblock
+        required: true
+        type: string
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.UserProfile'
+        "403":
+          description: :id is empty
+    put:
+      tags:
+      - user_profile
+      description: update the UserProfile
+      operationId: UserProfileController.Put
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to update
+        required: true
+        type: string
+      - in: body
+        name: body
+        description: body for UserProfile content
+        required: true
+        schema:
+          $ref: '#/definitions/models.UserProfile'
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.UserProfile'
+        "403":
+          description: :id is not int
+    delete:
+      tags:
+      - user_profile
+      description: delete the UserProfile
+      operationId: UserProfileController.Delete
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to delete
+        required: true
+        type: string
+      responses:
+        "200":
+          description: '{string} delete success!'
+        "403":
+          description: id is empty
+definitions:
+  models.ApplicantList:
+    title: ApplicantList
+    type: object
+    properties:
+      Applicant:
+        type: string
+      AppliedTime:
+        type: string
+        format: string
+      Id:
+        type: integer
+        format: int64
+  models.BookTransaction:
+    title: BookTransaction
+    type: object
+    properties:
+      ActualReturnTime:
+        type: string
+        format: string
+      BookAuthor:
+        type: string
+      BookBorrower:
+        type: string
+      BookCover:
+        type: string
+      BookDescription:
+        type: string
+      BookName:
+        type: string
+      BookOwner:
+        type: string
+      BookStatus:
+        type: string
+      BorrowerComment:
+        type: string
+      BorrowerRating:
+        type: integer
+        format: int64
+      Campus:
+        type: string
+      ExpectReturnTime:
+        type: string
+        format: string
+      Id:
+        type: integer
+        format: int64
+      OwnerComment:
+        type: string
+      OwnerRating:
+        type: integer
+        format: int64
+      PostDate:
+        type: string
+        format: string
+      PostExpiration:
+        type: string
+        format: string
+  models.BugReport:
+    title: BugReport
+    type: object
+    properties:
+      Content:
+        type: string
+      Id:
+        type: integer
+        format: int64
+      Reporter:
+        type: string
+      Response:
+        type: string
+  models.Campus:
+    title: Campus
+    type: object
+    properties:
+      CampusName:
+        type: string
+      Id:
+        type: integer
+        format: int64
+  models.User:
+    title: User
+    type: object
+    properties:
+      Email:
+        type: string
+      Id:
+        type: integer
+        format: int64
+      Password:
+        type: string
+      Username:
+        type: string
+  models.UserMessage:
+    title: UserMessage
+    type: object
+    properties:
+      Content:
+        type: string
+      Id:
+        type: integer
+        format: int64
+      Receiver:
+        type: string
+      Sender:
+        type: string
+      SendingTime:
+        type: string
+        format: string
+  models.UserProfile:
+    title: UserProfile
+    type: object
+    properties:
+      Avatar:
+        type: string
+      Badge:
+        type: string
+      BorrowCount:
+        type: integer
+        format: int64
+      Campus:
+        type: string
+      Email:
+        type: string
+      Id:
+        type: integer
+        format: int64
+      LendCount:
+        type: integer
+        format: int64
+      Nickname:
+        type: string
+      PostCount:
+        type: integer
+        format: int64
+      RequestCount:
+        type: integer
+        format: int64
+      Score:
+        type: integer
+        format: int64
+      SignupDate:
+        type: string
+        format: string
+      StudentId:
+        type: string
+      Username:
+        type: string
+tags:
+- name: apply
+  description: |
+    ApplicantListController operations for ApplicantList
+- name: book_transaction
+  description: |
+    BookTransactionController operations for BookTransaction
+- name: bug_report
+  description: |
+    BugReportController operations for BugReport
+- name: campus
+  description: |
+    CampusController operations for Campus
+- name: login
+  description: |
+    UserController operations for User
+- name: messger
+  description: |
+    UserMessageController operations for UserMessage
+- name: user_profile
+  description: |
+    UserProfileController operations for UserProfile
