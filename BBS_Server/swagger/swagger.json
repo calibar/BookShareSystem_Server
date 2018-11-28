@@ -1069,6 +1069,12 @@
                 "parameters": [
                     {
                         "in": "query",
+                        "name": "singleuser",
+                        "description": "username",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
                         "name": "query",
                         "description": "Filter. e.g. col1:v1,col2:v2 ...",
                         "type": "string"
@@ -1256,8 +1262,7 @@
             "type": "object",
             "properties": {
                 "ActualReturnTime": {
-                    "type": "string",
-                    "format": "string"
+                    "type": "string"
                 },
                 "BookAuthor": {
                     "type": "string"
@@ -1291,8 +1296,7 @@
                     "type": "string"
                 },
                 "ExpectReturnTime": {
-                    "type": "string",
-                    "format": "string"
+                    "type": "string"
                 },
                 "Id": {
                     "type": "integer",
@@ -1310,8 +1314,7 @@
                     "format": "string"
                 },
                 "PostExpiration": {
-                    "type": "string",
-                    "format": "string"
+                    "type": "string"
                 }
             }
         },

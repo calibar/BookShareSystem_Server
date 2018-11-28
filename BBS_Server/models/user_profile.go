@@ -26,6 +26,28 @@ type UserProfile struct {
 	SignupDate   time.Time `orm:"column(signup_date);type(timestamp);auto_now"`
 	Badge        string    `orm:"column(badge);size(32);null"`
 }
+type UPrank struct {
+	Username     string    `orm:"column(username);size(32)"`
+	Score        int       `orm:"column(score)"`
+	Rank int				`orm:"column(rank)"`
+}
+type UserProfileHasRank struct {
+	Id           int       `orm:"column(pid);auto"`
+	Username     string    `orm:"column(username);size(32)"`
+	Nickname     string    `orm:"column(nickname);size(32);null"`
+	Email        string    `orm:"column(email);size(32);null"`
+	Campus       string    `orm:"column(campus);size(32);null"`
+	StudentId    string    `orm:"column(student_id);size(16);null"`
+	Avatar       string    `orm:"column(avatar);null"`
+	LendCount    int       `orm:"column(lend_count)"`
+	BorrowCount  int       `orm:"column(borrow_count)"`
+	PostCount    int       `orm:"column(post_count)"`
+	RequestCount int       `orm:"column(request_count)"`
+	Score        int       `orm:"column(score)"`
+	SignupDate   time.Time `orm:"column(signup_date);type(timestamp);auto_now"`
+	Badge        string    `orm:"column(badge);size(32);null"`
+	Rank int				`orm:"column(rank)"`
+}
 
 func (t *UserProfile) TableName() string {
 	return "user_profile"
@@ -53,6 +75,7 @@ func GetUserProfileById(id int) (v *UserProfile, err error) {
 	}
 	return nil, err
 }
+
 func GetUserProfileByUsername(username string) (v *UserProfile, err error) {
 	o :=orm.NewOrm()
 	userProfile:=UserProfile{Username:username}
@@ -141,7 +164,26 @@ func GetAllUserProfile(query map[string]string, fields []string, sortby []string
 	}
 	return nil, err
 }
-
+// Get single user profile
+func GetSingleUserProfileByUsername(username string) (up UserProfileHasRank,err error) {
+	o:=orm.NewOrm()
+	var q orm.RawSeter
+	q=o.Raw("select * from (" +
+		"select *, case " +
+		"when @prev_value=score then @rank_count " +
+		"when @prev_value:=score then @rank_count:=@rank_count+1 " +
+		"end as rank " +
+		"from user_profile as up, (select @prev_value:=null,@rank_count:=0) as r " +
+		"order by score desc) as s " +
+		"where username= ?",username)
+	err=q.QueryRow(&up)
+	if err==nil{
+		fmt.Println(up)
+	}else {
+		fmt.Println(err)
+	}
+	return up,err
+}
 // UpdateUserProfile updates UserProfile by Id and returns error if
 // the record to be updated doesn't exist
 func UpdateUserProfileById(m *UserProfile) (err error) {

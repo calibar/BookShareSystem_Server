@@ -1,6 +1,7 @@
 package main
 
 import (
+	"BBS_Server/models"
 	_ "BBS_Server/routers"
 
 	"github.com/astaxie/beego"
@@ -13,10 +14,13 @@ func init() {
 }
 
 func main() {
+	go models.CheckExpiration()
 	if beego.BConfig.RunMode == "dev" {
 		beego.BConfig.WebConfig.DirectoryIndex = true
 		beego.BConfig.WebConfig.StaticDir["/swagger"] = "swagger"
 	}
+
 	beego.Run()
+
 }
 

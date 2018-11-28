@@ -34,6 +34,7 @@ func (c *BookTransactionController) URLMapping() {
 func (c *BookTransactionController) Post() {
 	var v models.BookTransaction
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
+		v.ActualReturnTime="2006/01/01"
 		if _, err := models.AddBookTransaction(&v); err == nil {
 			c.Ctx.Output.SetStatus(201)
 			c.Data["json"] = v

@@ -713,6 +713,10 @@ paths:
       operationId: UserProfileController.Get All
       parameters:
       - in: query
+        name: singleuser
+        description: username
+        type: string
+      - in: query
         name: query
         description: Filter. e.g. col1:v1,col2:v2 ...
         type: string
@@ -839,7 +843,6 @@ definitions:
     properties:
       ActualReturnTime:
         type: string
-        format: string
       BookAuthor:
         type: string
       BookBorrower:
@@ -863,7 +866,6 @@ definitions:
         type: string
       ExpectReturnTime:
         type: string
-        format: string
       Id:
         type: integer
         format: int64
@@ -877,7 +879,6 @@ definitions:
         format: string
       PostExpiration:
         type: string
-        format: string
   models.BugReport:
     title: BugReport
     type: object

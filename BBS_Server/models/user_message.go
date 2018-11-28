@@ -16,6 +16,8 @@ type UserMessage struct {
 	Receiver    string    `orm:"column(receiver);size(32)"`
 	Content     string    `orm:"column(content)"`
 	SendingTime time.Time `orm:"column(sending_time);type(timestamp);auto_now"`
+	MsgType 	string 	  `orm:"column(msg_type);size(32)"`
+	IsDealed   	bool 		`orm:"column(isDealed);"`
 }
 
 func (t *UserMessage) TableName() string {
