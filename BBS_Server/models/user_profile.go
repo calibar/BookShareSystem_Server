@@ -25,6 +25,7 @@ type UserProfile struct {
 	Score        int       `orm:"column(score)"`
 	SignupDate   time.Time `orm:"column(signup_date);type(timestamp);auto_now"`
 	Badge        string    `orm:"column(badge);size(32);null"`
+	EmailVerifyed bool     `orm:"column(email_verifyed);"`
 }
 type UPrank struct {
 	Username     string    `orm:"column(username);size(32)"`
@@ -46,6 +47,7 @@ type UserProfileHasRank struct {
 	Score        int       `orm:"column(score)"`
 	SignupDate   time.Time `orm:"column(signup_date);type(timestamp);auto_now"`
 	Badge        string    `orm:"column(badge);size(32);null"`
+	EmailVerifyed bool     `orm:"column(email_verifyed);"`
 	Rank int				`orm:"column(rank)"`
 }
 

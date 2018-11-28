@@ -1,7 +1,8 @@
 package models
 
 import (
-	"TP1/controller"
+	"crypto/md5"
+	"encoding/hex"
 	"errors"
 	"fmt"
 	"reflect"
@@ -28,7 +29,7 @@ func init() {
 // AddUser insert a new User into database and returns
 // last inserted Id on success.
 func AddUser(m *User) (id int64, err error) {
-	m.Password=controller.GetMD5Hash(m.Password)
+	m.Password=GetMD5Hash(m.Password)
 	o := orm.NewOrm()
 	id, err = o.Insert(m)
 	return
@@ -49,7 +50,7 @@ func VerifyPassword(username string, password string) bool {
 	o:=orm.NewOrm()
 	user:=User{Username:username}
 	err:=o.Read(&user,"Username")
-	password=controller.GetMD5Hash(password)
+	password=GetMD5Hash(password)
 	if err==nil{
 		if password==user.Password{
 			return true
@@ -177,4 +178,9 @@ func DeleteUser(id int) (err error) {
 		}
 	}
 	return
+}
+func GetMD5Hash(text string) string {
+	hasher := md5.New()
+	hasher.Write([]byte(text))
+	return hex.EncodeToString(hasher.Sum(nil))
 }

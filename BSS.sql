@@ -203,6 +203,7 @@ CREATE TABLE `user_profile` (
   `score` int(11) NOT NULL DEFAULT '50',
   `signup_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `badge` varchar(32) DEFAULT NULL,
+  `email_verifyed` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`pid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf32;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -213,7 +214,7 @@ CREATE TABLE `user_profile` (
 
 LOCK TABLES `user_profile` WRITE;
 /*!40000 ALTER TABLE `user_profile` DISABLE KEYS */;
-INSERT INTO `user_profile` VALUES (1,'mengxuan','Nick','cainmajesty@gmail.com','UofS','11239476','string',15,10,20,10,94,'2018-11-28 08:24:53','gold'),(2,'NickMengxuan','Nick','mel290@gmail.com','UofS','mel290','string',10,5,10,10,52,'2018-11-26 23:17:43','gold'),(3,'LiuMengxuan','Nick','mengxuanliu@outlook.com','UofS','mengxuanliu','string',10,6,11,11,49,'2018-11-28 08:36:29','gold');
+INSERT INTO `user_profile` VALUES (1,'mengxuan','Nick','cainmajesty@gmail.com','UofS','11239476','string',15,10,20,10,94,'2018-11-28 08:24:53','gold',0),(2,'NickMengxuan','Nick','mel290@gmail.com','UofS','mel290','string',10,5,10,10,52,'2018-11-26 23:17:43','gold',0),(3,'LiuMengxuan','Nick','mengxuanliu@outlook.com','UofS','mengxuanliu','string',10,6,11,11,49,'2018-11-28 08:36:29','gold',0);
 /*!40000 ALTER TABLE `user_profile` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -226,4 +227,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-11-28 16:12:33
+-- Dump completed on 2018-11-28 16:34:19
