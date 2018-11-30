@@ -12,6 +12,8 @@ import (
 type Campus struct {
 	Id         int    `orm:"column(campus_id);auto"`
 	CampusName string `orm:"column(campus_name);size(100)"`
+	CampusEmailStandard string `orm:"column(campus_email_standard);size(100)"`
+	AlterEmailStandard string `orm:"column(alter_email_standard);size(100)"`
 }
 
 func (t *Campus) TableName() string {
@@ -29,7 +31,21 @@ func AddCampus(m *Campus) (id int64, err error) {
 	id, err = o.Insert(m)
 	return
 }
+func CheckCampusEmail(emailStandard string)bool  {
+	o:=orm.NewOrm()
+	var campus []Campus
+	num,err:=o.Raw("select * from campus where campus_email_standard=? or alter_email_standard=?",emailStandard,emailStandard).QueryRows(&campus)
+	fmt.Println(num)
+	if err==nil{
+		if num>0{
+			return true
+		}
+	}else {
+		fmt.Println(err)
+	}
 
+	return false
+}
 // GetCampusById retrieves Campus by Id. Returns error if
 // Id doesn't exist
 func GetCampusById(id int) (v *Campus, err error) {

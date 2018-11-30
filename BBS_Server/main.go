@@ -1,12 +1,13 @@
 package main
 
 import (
-	"BBS_Server/models"
-	_ "BBS_Server/routers"
+"BBS_Server/models"
+_ "BBS_Server/routers"
+"github.com/astaxie/beego/plugins/cors"
 
-	"github.com/astaxie/beego"
-	"github.com/astaxie/beego/orm"
-	_ "github.com/go-sql-driver/mysql"
+"github.com/astaxie/beego"
+"github.com/astaxie/beego/orm"
+_ "github.com/go-sql-driver/mysql"
 )
 
 func init() {
@@ -19,6 +20,12 @@ func main() {
 		beego.BConfig.WebConfig.DirectoryIndex = true
 		beego.BConfig.WebConfig.StaticDir["/swagger"] = "swagger"
 	}
+	beego.InsertFilter("*", beego.BeforeRouter, cors.Allow(&cors.Options{
+		AllowAllOrigins: true,
+		AllowMethods:    []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
+		AllowHeaders:    []string{"Origin", "Authorization", "Access-Control-Allow-Origin", "Content-Type"},
+		ExposeHeaders:   []string{"Content-Length", "Access-Control-Allow-Origin"},
+	}))
 
 	beego.Run()
 

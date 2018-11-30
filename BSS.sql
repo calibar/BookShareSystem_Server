@@ -65,7 +65,7 @@ CREATE TABLE `book_transaction` (
   `borrower_comment` text,
   `book_status` varchar(32) NOT NULL,
   PRIMARY KEY (`book_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf32;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf32;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -74,7 +74,7 @@ CREATE TABLE `book_transaction` (
 
 LOCK TABLES `book_transaction` WRITE;
 /*!40000 ALTER TABLE `book_transaction` DISABLE KEYS */;
-INSERT INTO `book_transaction` VALUES (5,'Book1','Author1','just for testing','','mengxuan','LiuMengxuan','UofS','2018-12-08','2018-12-07','2006-01-01','2018-11-28 08:24:53',0,0,'','','borrowed'),(6,'Book1','Author1','just for testing','','','LiuMengxuan','UofS','2018-12-08','2018-12-07','2006-01-01','2018-11-28 08:34:00',0,0,'','','request'),(7,'Book1','Author1','just for testing','','','LiuMengxuan','UofS','2018-12-08','2018-12-07','2006-01-01','2018-11-28 08:34:57',0,0,'','','request'),(8,'Book1','Author1','just for testing','','LiuMengxuan','','UofS','2018-12-08','2018-12-07','2006-01-01','2018-11-28 08:36:29',0,0,'','','post');
+INSERT INTO `book_transaction` VALUES (5,'Book1','Author1','just for testing','','mengxuan','LiuMengxuan','UofS','2018-12-08','2018-12-07','2006-01-01','2018-11-28 08:24:53',0,0,'','','borrowed'),(6,'Book1','Author1','just for testing','','','LiuMengxuan','UofS','2018-12-08','2018-12-07','2006-01-01','2018-11-28 08:34:00',0,0,'','','request'),(7,'Book1','Author1','just for testing','','','LiuMengxuan','UofS','2018-12-08','2018-12-07','2006-01-01','2018-11-28 08:34:57',0,0,'','','request'),(8,'Book1','Author1','just for testing','','LiuMengxuan','','UofS','2018-12-08','2018-12-07','2006-01-01','2018-11-28 08:36:29',0,0,'','','post'),(9,'Book1','Author1','just for testing','','LiuMengxuan','','UofS','2018-12-08','2018-12-07','2006-01-01','2018-11-30 04:57:34',0,0,'','','post'),(10,'Book1','Author1','just for testing','','LiuMengxuan','','UofS','2018-12-08','2018-12-07','2006-01-01','2018-11-30 05:48:54',0,0,'','','post');
 /*!40000 ALTER TABLE `book_transaction` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -113,8 +113,10 @@ DROP TABLE IF EXISTS `campus`;
 CREATE TABLE `campus` (
   `campus_id` int(11) NOT NULL AUTO_INCREMENT,
   `campus_name` varchar(100) NOT NULL,
+  `campus_email_standard` varchar(100) NOT NULL,
+  `alter_email_standard` varchar(100) NOT NULL,
   PRIMARY KEY (`campus_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf32;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf32;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -123,6 +125,7 @@ CREATE TABLE `campus` (
 
 LOCK TABLES `campus` WRITE;
 /*!40000 ALTER TABLE `campus` DISABLE KEYS */;
+INSERT INTO `campus` VALUES (1,'University of Saskatchewan','usask.ca','mail.usask.ca'),(2,'gmail','gmail.com','');
 /*!40000 ALTER TABLE `campus` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -139,7 +142,7 @@ CREATE TABLE `user` (
   `password` varchar(64) NOT NULL,
   `email` varchar(32) DEFAULT NULL,
   PRIMARY KEY (`uid`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf32;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf32;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -148,7 +151,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (2,'mengxuan','a1b1c433d3c14af65c85687b6ec640da','cainmajest@gmail.com'),(6,'NickMengxuan','a1b1c433d3c14af65c85687b6ec640da','mel290@gmail.com'),(7,'LiuMengxuan','a1b1c433d3c14af65c85687b6ec640da','mengxuanliu@outlook.com');
+INSERT INTO `user` VALUES (2,'mengxuan','a1b1c433d3c14af65c85687b6ec640da','cainmajest@gmail.com'),(6,'NickMengxuan','a1b1c433d3c14af65c85687b6ec640da','mel290@gmail.com'),(7,'LiuMengxuan','a1b1c433d3c14af65c85687b6ec640da','mengxuanliu@outlook.com'),(8,'tom','34b7da764b21d298ef307d04d8152dc5','weg896@mail.usask.ca');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -204,6 +207,7 @@ CREATE TABLE `user_profile` (
   `signup_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `badge` varchar(32) DEFAULT NULL,
   `email_verifyed` tinyint(1) DEFAULT '0',
+  `verify_code` int(11) DEFAULT NULL,
   PRIMARY KEY (`pid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf32;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -214,7 +218,7 @@ CREATE TABLE `user_profile` (
 
 LOCK TABLES `user_profile` WRITE;
 /*!40000 ALTER TABLE `user_profile` DISABLE KEYS */;
-INSERT INTO `user_profile` VALUES (1,'mengxuan','Nick','cainmajesty@gmail.com','UofS','11239476','string',15,10,20,10,94,'2018-11-28 08:24:53','gold',0),(2,'NickMengxuan','Nick','mel290@gmail.com','UofS','mel290','string',10,5,10,10,52,'2018-11-26 23:17:43','gold',0),(3,'LiuMengxuan','Nick','mengxuanliu@outlook.com','UofS','mengxuanliu','string',10,6,11,11,49,'2018-11-28 08:36:29','gold',0);
+INSERT INTO `user_profile` VALUES (1,'mengxuan','Nick','cainmajesty@gmail.com','UofS','11239476','string',15,10,20,10,94,'2018-11-30 12:12:54','gold',1,27887),(2,'NickMengxuan','Nick','mel290@gmail.com','UofS','mel290','string',10,5,10,10,52,'2018-11-26 23:17:43','gold',0,NULL),(3,'LiuMengxuan','Nick','mengxuanliu@outlook.com','UofS','mengxuanliu','string',10,6,13,11,49,'2018-11-30 09:06:02','gold',1,98081);
 /*!40000 ALTER TABLE `user_profile` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -227,4 +231,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-11-28 16:34:19
+-- Dump completed on 2018-11-30 17:33:09

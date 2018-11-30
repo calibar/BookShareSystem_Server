@@ -1064,13 +1064,17 @@
                 "tags": [
                     "user_profile"
                 ],
-                "description": "get UserProfile",
-                "operationId": "UserProfileController.Get All",
                 "parameters": [
                     {
                         "in": "query",
                         "name": "singleuser",
                         "description": "username",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "verify_email",
+                        "description": "Filter. e.g. username|email",
                         "type": "string"
                     },
                     {
@@ -1341,6 +1345,12 @@
             "title": "Campus",
             "type": "object",
             "properties": {
+                "AlterEmailStandard": {
+                    "type": "string"
+                },
+                "CampusEmailStandard": {
+                    "type": "string"
+                },
                 "CampusName": {
                     "type": "string"
                 },
@@ -1380,6 +1390,12 @@
                     "type": "integer",
                     "format": "int64"
                 },
+                "IsDealed": {
+                    "type": "boolean"
+                },
+                "MsgType": {
+                    "type": "string"
+                },
                 "Receiver": {
                     "type": "string"
                 },
@@ -1411,6 +1427,9 @@
                 },
                 "Email": {
                     "type": "string"
+                },
+                "EmailVerifyed": {
+                    "type": "boolean"
                 },
                 "Id": {
                     "type": "integer",

@@ -379,8 +379,10 @@ func RescoreLendRecore(username string, scoreChange int, bookname string)  {
 	o :=orm.NewOrm()
 	var user UserProfile
 	err:=o.Raw("select * from user_profile where username=?",username).QueryRow(&user)
-	usernum,err:=o.Raw("select * from user_profile").QueryRows()
-	demand,err:=o.Raw("select * from book_transaction where book_name=? and book_status=?",bookname,"request").QueryRows()
+	var users []UserProfile
+	usernum,err:=o.Raw("select * from user_profile").QueryRows(&users)
+	var demands []BookTransaction
+	demand,err:=o.Raw("select * from book_transaction where book_name=? and book_status=?",bookname,"request").QueryRows(&demands)
 	if usernum >10{
 		if demand>2{
 			user.Score=user.Score+int(float64(scoreChange)*math.Log2(float64(demand))/math.Log10(float64(usernum)))

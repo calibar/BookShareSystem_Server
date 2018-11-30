@@ -26,6 +26,7 @@ type UserProfile struct {
 	SignupDate   time.Time `orm:"column(signup_date);type(timestamp);auto_now"`
 	Badge        string    `orm:"column(badge);size(32);null"`
 	EmailVerifyed bool     `orm:"column(email_verifyed);"`
+	VerifyCode int  `orm:"column(verify_code);"`
 }
 type UPrank struct {
 	Username     string    `orm:"column(username);size(32)"`
@@ -48,6 +49,7 @@ type UserProfileHasRank struct {
 	SignupDate   time.Time `orm:"column(signup_date);type(timestamp);auto_now"`
 	Badge        string    `orm:"column(badge);size(32);null"`
 	EmailVerifyed bool     `orm:"column(email_verifyed);"`
+	VerifyCode int  `orm:"column(verify_code);"`
 	Rank int				`orm:"column(rank)"`
 }
 
@@ -214,4 +216,37 @@ func DeleteUserProfile(id int) (err error) {
 		}
 	}
 	return
+}
+func GenerateVerifyCode(username string,verifyCode int){
+	fmt.Println(username)
+	o:=orm.NewOrm()
+	var user UserProfile
+	err:=o.Raw("select * from user_profile where username=?",username).QueryRow(&user)
+	if err==nil {
+		user.VerifyCode=verifyCode
+		var num int64
+		if num, err = o.Update(&user); err == nil {
+			fmt.Println("Number of records updated in database:", num)
+		}
+		fmt.Println(user.VerifyCode)
+
+	}else {
+		fmt.Println(err)
+	}
+}
+func VerifyVCode(username string,verifyCode int)bool  {
+	o:=orm.NewOrm()
+	var user UserProfile
+	err:=o.Raw("select * from user_profile where username=?",username).QueryRow(&user)
+	if err==nil{
+		if user.VerifyCode==verifyCode {
+			user.EmailVerifyed=true
+			var num int64
+			if num, err = o.Update(&user); err == nil {
+				fmt.Println("Number of records updated in database:", num)
+			}
+			return true
+		}
+	}
+	return false
 }
